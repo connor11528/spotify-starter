@@ -24,7 +24,7 @@ module.exports = function(app){
 
 	var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
 	console.log(authorizeURL);
-	
+
 	// Spotify login
 	apiRouter.get('/login/spotify', function(req, res){
 		request(authorizeURL, function (error, response, body) {
@@ -33,10 +33,16 @@ module.exports = function(app){
 			}
 		})
 	});
-
+	var i = 0;
 	// Spotify callback
 	apiRouter.get('/spotify/callback', function(req, res){
-		console.log(req.query);
+		console.log('here we are');
+		console.log(req.params);
+		console.log(req.body);
+		console.log(i);
+		i++;
+		
+		// res.redirect('/');
 		// has 'state' and 'code' properties
 		// res.json(req.query);
 	});

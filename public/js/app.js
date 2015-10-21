@@ -2,7 +2,8 @@
 var app = angular.module('jwtintro', [
 	'ui.router',
 	'formly',
-	'formlyBootstrap'
+	'formlyBootstrap',
+	'spotify'
 ], function($httpProvider){
 	// will add token to header of requests if token is present
 	$httpProvider.interceptors.push('authInterceptor');
@@ -20,7 +21,15 @@ app.run(function($rootScope, auth){
 
 app.constant('API_URL', 'api/');
 
-app.config(function($stateProvider, $urlRouterProvider){
+app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
+	// Spotify config
+	SpotifyProvider.setClientId('68e85fc65d524c1fb18f5c0d0a251fc2');
+	SpotifyProvider.setRedirectUri('http://localhost:3000/api/spotify/callback');
+	SpotifyProvider.setScope('user-read-private user-read-email');
+	
+	// SpotifyProvider.setAuthToken('<AUTH_TOKEN>');
+
+	// Routes
 	$stateProvider
 		.state('home', {
 			url: "/",
