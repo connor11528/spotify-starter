@@ -12,11 +12,11 @@
 <div class='jumbotron text-center'>
 	<h1>Welcome to the site</h1>
 
-	<a href=href='https://accounts.spotify.com/authorize?client_id=68e85fc65d524c1fb18f5c0d0a251fc2&response_type=code&redirect_uri=http://localhost:3000/api/spotify/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice' class='btn btn-success btn-lg' ng-click='requestSpotifyLogin()'>
+	<div ng-if='!token' class='btn btn-success btn-lg' ng-click='requestSpotifyLogin()'>
 		<i class="fa fa-spotify fa-3"></i> Login with Spotify
-	</a>
+	</div>
 
-
+	<h2 ng-if='token'>You are logged in {{token}}</h2>
 
 	<ol>
 		<li ng-repeat='user in users'>{{user.email}}</li>
