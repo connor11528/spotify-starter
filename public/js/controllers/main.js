@@ -3,7 +3,9 @@ app.controller('MainCtrl', function($scope, $http, $window, $rootScope, Spotify)
 	$rootScope.token = $window.localStorage.getItem('spotify-token') || false;
 
 	$scope.requestSpotifyLogin = function(){
-		Spotify.login();
+		Spotify.login().then(function(data){
+			console.log(data);
+		});
 	};
 
 	$scope.$watch(function(){
