@@ -3,8 +3,7 @@ var app = angular.module('jwtintro', [
 	'ui.router',
 	'formly',
 	'formlyBootstrap',
-	'spotify',
-	'callbackBox'
+	'spotify'
 ], function($httpProvider){
 	// will add token to header of requests if token is present
 	$httpProvider.interceptors.push('authInterceptor');
