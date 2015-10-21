@@ -1,21 +1,10 @@
-node-jwt-intro
+Spotify starter
 =====
 
-> An express.js server with mongodb and mongoose ORM. This repo uses angular.js and the browser's localStorage to create a secure, persistent authentication application
 
-[DEMO](https://node-jwt-intro.herokuapp.com/#/)
+* angular-spotify: https://github.com/eddiemoore/angular-spotify
 
-[TUTORIAL](https://github.com/cleechtech/cleechtech.github.io/blob/master/posts/use%20express%2C%20angular%20and%20jwt%20to%20make%20a%20secure%20app.md)
-
-Using
-
-* angular-formly
-* angular ui router abstract states
-* mongodb with mongoose
-* password hashing with [node.bcrypt](https://github.com/ncb000gt/node.bcrypt.js)
-* jwt token authentication
-
-Relied heavily on the [egghead course](https://egghead.io/series/angularjs-authentication-with-jwt) and the [scotch.io tutorial](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
+* spotify-web-api-node: https://github.com/thelinmichael/spotify-web-api-node
 
 #### Getting started
 ```
