@@ -12,8 +12,5 @@ app.controller('MainCtrl', function($scope, $http, API_URL){
 		});
 	};
 
-	$http.get('https://accounts.spotify.com/authorize?client_id=68e85fc65d524c1fb18f5c0d0a251fc2&response_type=code&redirect_uri=http://localhost:3000/api/spotify/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice')
-		.then(function(res){
-			console.log(res.data);
-		});
+
 });

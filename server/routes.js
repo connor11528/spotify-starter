@@ -10,9 +10,10 @@ var express = require('express'),
 	router = express.Router();
 
 module.exports = function(app){	
+	// Make Spotify Authorization request url
 	var scopes = ['user-read-private', 'user-read-email'];
 	var state = 'some-state-of-my-choice';
-	var redirectUri = 'http://localhost:3000/api/spotify/callback';
+	var redirectUri = '/api/spotify/callback';
 	var SPOTIFY_CLIENT_ID = '68e85fc65d524c1fb18f5c0d0a251fc2';
 	var SPOTIFY_CLIENT_SECRET = 'a89c5456c0234e9abf45ee9ce6e01f88';
 
@@ -23,6 +24,7 @@ module.exports = function(app){
 
 	var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
 	console.log(authorizeURL);
+	
 	// Spotify login
 	apiRouter.get('/login/spotify', function(req, res){
 		request(authorizeURL, function (error, response, body) {
@@ -34,8 +36,9 @@ module.exports = function(app){
 
 	// Spotify callback
 	apiRouter.get('/spotify/callback', function(req, res){
-		console.log('hit the callback');
-		res.send('Heard back from spotify')
+		console.log(req.query);
+		// has 'state' and 'code' properties
+		// res.json(req.query);
 	});
 
 	// Users
