@@ -29,6 +29,8 @@
     "method-override": "^2.3.3",
     "mongoose": "^4.0.5",
     "morgan": "^1.6.1",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "request": "^2.65.0",
+    "spotify-web-api-node": "^2.1.0"
   }
 }
