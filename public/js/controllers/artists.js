@@ -1,7 +1,16 @@
 
 app.controller('ArtistsCtrl', function($scope, $rootScope, Spotify, $http){
 
-	$scope.getFollowing = function(){
+	$scope.getFollowing = function(after){
+		var _params = {
+			type: 'artist',
+			limit: 50, // maximum
+		};;
+
+		if(after){
+			// The last artist ID retrieved from the previous request
+			_params['after'] = after;
+		}
 
     	var req = {
 			method: 'GET',
@@ -10,12 +19,15 @@ app.controller('ArtistsCtrl', function($scope, $rootScope, Spotify, $http){
 				'Authorization': 'Bearer ' + $rootScope.token,
 				'Content-Type': 'application/json'
 			},
-			data: { type: 'artist' }
+			params: _params
 		};
 
-		// $http(req)
-		Spotify.userFollowingContains().then(function(res){
-			console.log(res);
-		})
+		$http(req).then(function(res){
+			console.log(res.data.artists);
+			$scope.artists = res.data.artists.items;
+			$scope.nextLink = res.data.artists.next;
+			$scope.artistTotal = res.data.artists.total;
+		});
 	};
+
 });

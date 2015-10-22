@@ -13,8 +13,8 @@ app.controller('MainCtrl', function($scope, $http, $window, $rootScope, Spotify)
 	};
 
 	$scope.logout = function(){
-		$rootScope.token = null;
-		$rootScope.user = null;
+		$rootScope.token = false;
+		$rootScope.user = false;
 		$window.localStorage.setItem('spotify-token', null);
 	};
 	
