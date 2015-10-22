@@ -23,7 +23,6 @@ module.exports = function(app){
 	});
 
 	var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
-	console.log(authorizeURL);
 
 	// Spotify login
 	// apiRouter.get('/login/spotify', function(req, res){

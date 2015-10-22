@@ -6,6 +6,11 @@ Spotify starter
 
 * spotify-web-api-node: https://github.com/thelinmichael/spotify-web-api-node
 
+#### Todo
+
+* load upcoming shows
+* follow/unfollow in mongo
+
 #### Getting started
 ```
 $ git clone <this_repo>

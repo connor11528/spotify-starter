@@ -1,19 +1,21 @@
 
 app.controller('MainCtrl', function($scope, $http, $window, $rootScope, Spotify){
-	$rootScope.token = $window.localStorage.getItem('spotify-token') || false;
+	$rootScope.token = $window.localStorage.getItem('spotify-token') || null;
 
 	$scope.requestSpotifyLogin = function(){
 		Spotify.login().then(function(data){
 			$rootScope.token = data;
+			Spotify.authToken = data;
+			console.log(data);
+			console.log(Spotify.authToken);
+			$http.defaults.headers.common.Authorization = 'Bearer ' + $rootScope.token;
 		});
 	};
 
-	// $scope.$watch(function(){
-	// 	return $window.localStorage.getItem('spotify-token');
-	// }, function(newToken, oldToken){
-	// 	$rootScope.token = newToken;
-	// 	console.log(oldToken);
-	// 	console.log(newToken);
-	// });
+	$scope.logout = function(){
+		$rootScope.token = null;
+		$rootScope.user = null;
+		$window.localStorage.setItem('spotify-token', null);
+	};
 	
 });

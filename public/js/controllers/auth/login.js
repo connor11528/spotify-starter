@@ -1,5 +1,7 @@
 
 app.controller('LoginCtrl', function($rootScope, $scope, user, $state){
+
+	// login with email/password
 	$scope.userCreds = {};
 
 	$scope.loginFields = [
