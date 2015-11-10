@@ -25,9 +25,6 @@ app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 	SpotifyProvider.setClientId('68e85fc65d524c1fb18f5c0d0a251fc2');
 	SpotifyProvider.setRedirectUri('http://localhost:3000/api/spotify/callback');
 	SpotifyProvider.setScope('user-read-email user-follow-read user-follow-modify user-library-read');
-	
-	// this is my personal auth token..
-	// SpotifyProvider.setAuthToken('BQCUnp9WisXiC0OwtF_RSERKsh3zHonuTRPyym-88intIFKPJZfgXj4YnbQiqakPzFiflJD7KErH-cg1FvO0Oigl1vFVg-PEp3hwV-mGZEJiApHaplTah8Yc5Jxg04dwMz7g-6En8Vxk7y_HV_pKTQ2G6S1dX6491SDsry0b_gb_pVSlz9rYP3M');
 
 	// Routes
 	$stateProvider

@@ -4,7 +4,7 @@ var path = require('path'),
 module.exports = {
 	development: {
 		rootPath: rootPath,
-		db: 'mongodb://localhost/node-jwt-intro',
+		db: 'mongodb://localhost/spotify-starter',
 		port: process.env.PORT || 3000
 	},
 	production: {
