@@ -30,7 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 	$stateProvider
 		.state('home', {
 			url: "/",
-			templateUrl: "templates/main.html",
+			templateUrl: "client/templates/main.html",
 			controller: 'MainCtrl'
 		})
 		// .state('artists', {

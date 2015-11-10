@@ -86,9 +86,9 @@ module.exports = function(app){
 		res.sendFile(rootPath + 'public/admin.html');
 	});
 
-	// angularjs catch all route
+	// client catch all route
 	router.get('/*', function(req, res) {
-		res.sendFile(rootPath + 'public/index.html', { user: req.user });
+		res.sendFile(rootPath + 'public/client.html', { user: req.user });
 	});
 
 	app.use('/api', apiRouter);
