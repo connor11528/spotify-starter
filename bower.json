@@ -23,6 +23,7 @@
     "angular-formly": "~7.2.3",
     "angular-formly-templates-bootstrap": "~6.1.5",
     "angular-spotify": "~1.0.0",
-    "angular-cookies": "~1.4.7"
+    "angular-cookies": "~1.4.7",
+    "angular-bootstrap": "~0.14.3"
   }
 }
