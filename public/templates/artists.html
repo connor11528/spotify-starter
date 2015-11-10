@@ -1,6 +1,10 @@
-<div class='row'>
-	<div class='col-sm-12'>
-		<h2>Artists</h2>
 
-	</div>
+<div class='row' ng-controller='ArtistsCtrl'>
+	<div class='btn btn-primary' ng-click='getFollowing()'>Get follow</div>
+	<h3 ng-if='artists'>Showing {{artists.length}} of {{artistTotal}} artists you follow</h3>
+	<div ng-repeat='artist in artists'>
+		{{artist.name}}
+ 	</div>
+ 	<div class='btn btn-primary' 
+ 		ng-click='getFollowing(artists[artists.length - 1].id)'>Next page</div>
 </div>
