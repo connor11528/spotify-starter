@@ -24,10 +24,6 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 
-// JWT config
-var jwtSecret = 'thupers3crT$12';
-app.set('superSecret', jwtSecret);
-
 // ROUTES
 require('./server/routes')(app);
 

@@ -6,7 +6,7 @@
     </div>
       <ul class="nav navbar-nav navbar-right">
         <li ng-if='user' id='logged-in'>
-        	<span ng-bind='user.email || user.email'></span>
+        	<span ng-bind='user.display_name'></span>
         	<span ng-click='logout()' class='logout-btn'> (logout)</span>
         </li>
         <li ng-if='!user'>		  	

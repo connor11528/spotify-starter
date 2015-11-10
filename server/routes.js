@@ -1,11 +1,10 @@
 var express = require('express'),
 	path = require('path'),
-	jwt = require('jsonwebtoken'),
 	request = require('request'),
-	utils = require('./utils'),
 	rootPath = path.normalize(__dirname + '/../'),
 	apiRouter = express.Router(),
 	User = require('./models/user'),
+	Show = require('./models/show'),
 	router = express.Router();
 
 module.exports = function(app){	
@@ -54,6 +53,37 @@ module.exports = function(app){
 				});
 			}
 		});
+	});
+
+	apiRouter.post('/shows/add', function(req, res){
+		var title = req.body.title,
+			date = req.body.date;
+		// add show
+		var newShow = new Show({
+			title: title,
+			date: date
+		});
+
+		newShow.save(function(err){
+			if(err) throw err;
+
+			res.redirect('/admin');
+			// res.sendFile(rootPath + 'public/admin.html', {
+			// 	success: true,
+			// 	message: 'Successfully added show!',
+			// 	show: newShow
+			// });
+		});
+	});
+
+	apiRouter.get('/shows', function(req, res){
+		Show.find({}, function(err, shows){
+			res.json(shows);
+		});
+	});
+
+	router.get('/admin', function(req, res){
+		res.sendFile(rootPath + 'public/admin.html');
 	});
 
 	// angularjs catch all route
