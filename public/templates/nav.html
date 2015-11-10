@@ -1,0 +1,22 @@
+
+<nav class="navbar navbar-inverse" ng-controller='NavCtrl'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href ui-sref='home'>Spotify Starter</a>
+    </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if='user' id='logged-in'>
+        	<span ng-bind='user.email || user.email'></span>
+        	<span ng-click='logout()' class='logout-btn'> (logout)</span>
+        </li>
+        <li ng-if='!user'>		  	
+        	<a href class='btn btn-success' ng-click='requestSpotifyLogin()'>
+        		<i class="fa fa-spotify fa-3"></i> Login with Spotify
+        	</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<hr />

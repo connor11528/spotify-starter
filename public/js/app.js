@@ -1,21 +1,20 @@
 
-var app = angular.module('jwtintro', [
+var app = angular.module('spotify-starter', [
 	'ui.router',
+	'ngCookies',
 	'formly',
 	'formlyBootstrap',
 	'spotify'
-], function($httpProvider){
-	// will add token to header of requests if token is present
-	$httpProvider.interceptors.push('authInterceptor');
-});
+]);
 
-app.run(function($rootScope, auth){
-	// if the user's data is in local storage
-	// show them as signed in
-	var user = auth.getUser();
+app.run(function($rootScope, $cookies, Spotify){
 
-	if(user){
-		$rootScope.user = JSON.parse(user);
+	if($cookies.get('spotify-token')) { 
+		Spotify.setAuthToken($cookies.get('spotify-token'));
+		Spotify.getCurrentUser().then(function (data) {
+			$rootScope.user = data;
+			console.log($rootScope.user);
+		});
 	}
 });
 
@@ -50,22 +49,6 @@ app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 		// 		}
 		// 	}
 		// })
-
-		// email/password routes
-		.state('auth', {
-			abstract: true,
-			templateUrl: 'templates/auth/main.html'
-		})
-		.state('auth.login', {
-			url: "/login",
-			templateUrl: "templates/auth/login.html",
-			controller: 'LoginCtrl'
-		})
-		.state('auth.register', {
-			url: "/register",
-			templateUrl: "templates/auth/register.html",
-			controller: 'RegisterCtrl'
-		});
 
 	$urlRouterProvider.otherwise("/");
 });

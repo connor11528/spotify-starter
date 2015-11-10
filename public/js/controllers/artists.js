@@ -21,7 +21,7 @@ app.controller('ArtistsCtrl', function($scope, $rootScope, Spotify, $http){
 			},
 			params: _params
 		};
-
+		console.log(req);
 		$http(req).then(function(res){
 			console.log(res.data.artists);
 			$scope.artists = res.data.artists.items;

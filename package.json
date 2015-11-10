@@ -1,5 +1,5 @@
 {
-  "name": "mean-starter",
+  "name": "spotify-starter",
   "version": "0.0.1",
   "description": "a starting point for express, angular, mongodb apps",
   "main": "server.js",
