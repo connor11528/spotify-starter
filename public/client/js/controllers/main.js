@@ -17,6 +17,7 @@ app.controller('MainCtrl', [
 			$scope.artistTotal = res.artistTotal;
 
 			// async loop! (http://stackoverflow.com/questions/4288759/asynchronous-for-cycle-in-javascript)
+			// (http://stackoverflow.com/questions/11488014/asynchronous-process-inside-a-javascript-for-loop)
 			// make sure we have all artists
 			while($scope.artists.length < res.artistTotal){
 				$scope.artists.conccat(res.artists);
