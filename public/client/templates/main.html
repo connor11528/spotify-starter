@@ -1,4 +1,11 @@
-
+<div class='row' ng-controller='ArtistsCtrl'>
+	<h1>Artists you follow</h1>
+	<p ng-if='!artists.length'>Sign in to see artists you follow</p>
+	<div ng-if='artists.length > 0' ng-repeat='artist in artists'>
+		<img ng-src='{{artist.thumbnail}}' class='img-thumbnail' />
+		<h3>{{artist.name}}</h3>
+	</div>
+</div>
 <div class="row" ng-controller='ShowsCtrl'>
 	<h1>Upcoming events</h1>
 

@@ -1,4 +1,4 @@
-
+// get artist user follows from spotify
 app.controller('ArtistsCtrl', function($scope, $rootScope, Spotify, $http){
 
 	$scope.getFollowing = function(after){

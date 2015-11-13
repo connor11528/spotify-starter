@@ -9,9 +9,9 @@ app.controller('NavCtrl', [
 
 		$scope.requestSpotifyLogin = function(){
 
-			Spotify.login().then(function(data){
+			Spotify.login().then(function(token){
 				
-				Spotify.setAuthToken(data);
+				Spotify.setAuthToken(token);
 				Spotify.getCurrentUser().then(function (data) {					
 
 					// create user
@@ -20,8 +20,9 @@ app.controller('NavCtrl', [
 						name: data.display_name
 					}).then(function(res){
 						if(res.data.success){
+							console.log(token);
 							// log user in
-							$cookies.put('spotify-token', data);
+							$cookies.put('spotify-token', token);
 							$rootScope.user = data;
 						}
 					});

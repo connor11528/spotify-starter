@@ -8,9 +8,9 @@ var app = angular.module('spotify-starter', [
 ]);
 
 app.run(function($rootScope, $cookies, Spotify){
-
-	if($cookies.get('spotify-token')) { 
-		Spotify.setAuthToken($cookies.get('spotify-token'));
+	var user_token = $cookies.get('spotify-token');
+	if(user_token) {
+		Spotify.setAuthToken(user_token);
 		Spotify.getCurrentUser().then(function (data) {
 			$rootScope.user = data;
 			console.log($rootScope.user);
