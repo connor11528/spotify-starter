@@ -1,13 +1,28 @@
-<div class='row' ng-controller='ArtistsCtrl'>
-	<h1>Artists you follow</h1>
+<div class='row'>
+	<h1>Artists you follow <p class="inline text-muted small">({{artistTotal}})</p></h1>
 	<p ng-if='!artists.length'>Sign in to see artists you follow</p>
-	<div ng-if='artists.length > 0' ng-repeat='artist in artists'>
-		<img ng-src='{{artist.thumbnail}}' class='img-thumbnail' />
+    
+    <div class='row'>
+	    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class='btn btn-warning'>
+	        Previous
+	    </button>
+	    <button ng-disabled="currentPage >= artists.length/4 - 1" ng-click="currentPage=currentPage+1" class='btn btn-warning'>
+	        Next
+	    </button>
+	    <h2 class='inline'>{{currentPage+1}}/{{totalPages(artists)}}</h2>
+    </div>
+
+	<div ng-if='artists.length > 0' 
+		ng-repeat='artist in artists | startFrom:currentPage*4 | limitTo:4' 
+		class='col-sm-3'>
+
+		<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
 		<h3>{{artist.name}}</h3>
 	</div>
+	
 </div>
 <div class="row" ng-controller='ShowsCtrl'>
-	<h1>Upcoming events</h1>
+	<h1>Upcoming shows</h1>
 
 	<div ng-repeat='show in shows' class="col-xs-12 col-sm-8">
 		<ul class="event-list">

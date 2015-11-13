@@ -7,16 +7,16 @@ var app = angular.module('spotify-starter', [
 	'spotify'
 ]);
 
-app.run(function($rootScope, $cookies, Spotify){
+app.run(function($rootScope, $cookies, Spotify, auth){
 	var user_token = $cookies.get('spotify-token');
 	if(user_token) {
 		Spotify.setAuthToken(user_token);
-		Spotify.getCurrentUser().then(function (data) {
-			$rootScope.user = data;
-			console.log($rootScope.user);
+		Spotify.getCurrentUser().then(function(userData){
+			auth.userLoggedIn(userData);
 		});
 	}
 });
+
 
 app.constant('API_URL', 'api/');
 

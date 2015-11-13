@@ -1,3 +1,4 @@
+
 #logged-in {
 	margin-top: 20px;
 }
@@ -6,7 +7,19 @@
 	cursor: pointer;
 }
 
+/* artist list */
+.artist-image {
+	height:210px;
+	width:210px;
+}
 
+.inline {
+	display: inline;
+}
+
+.small {
+	font-size: 20px;
+}
 
 /* event list */
 
