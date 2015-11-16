@@ -9,7 +9,6 @@ app.controller('MainCtrl', [
 		$scope.totalPages = function(artists){
 			return Math.ceil(artists.length/4);
 		};
-		$scope.artists = [];
 
 		$scope.addPage = function(){
 			$scope.currentPage = $scope.currentPage + 1;
@@ -21,7 +20,7 @@ app.controller('MainCtrl', [
 
 		// grab the artists they follow
 		artists.getUserFollowing().then(function(artistsUserFollows){
-			$scope.artistTotal = artistsUserFollows.length;
-			$scope.artists = artistsUserFollows;
+			$rootScope.artistTotal = artistsUserFollows.length;
+			$rootScope.artists = artistsUserFollows;
 		});
 	}]);

@@ -8,6 +8,9 @@ var app = angular.module('spotify-starter', [
 ]);
 
 app.run(function($rootScope, $cookies, Spotify, auth){
+	$rootScope.artists = [];
+	$rootScope.artistTotal = 0;
+	
 	var user_token = $cookies.get('spotify-token');
 	if(user_token) {
 		Spotify.setAuthToken(user_token);

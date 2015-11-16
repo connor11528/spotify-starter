@@ -1,12 +1,12 @@
 app.controller('NavCtrl', [
 	'$scope', 
 	'$rootScope', 
-	'$cookies',
 	'$http',
+	'$cookies',
 	'Spotify', 
 	'API_URL',
 	'auth',
-	function($scope, $rootScope, $cookies, $http, Spotify, API_URL, auth){
+	function($scope, $rootScope, $http, $cookies, Spotify, API_URL, auth){
 
 		$scope.requestSpotifyLogin = function(){
 
@@ -31,7 +31,6 @@ app.controller('NavCtrl', [
 		};
 
 		$scope.logout = function(){
-			$rootScope.user = false;
-			$cookies.remove('spotify-token');
+			auth.logout();
 		};
 	}]);
