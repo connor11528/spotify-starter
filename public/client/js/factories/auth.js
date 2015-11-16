@@ -11,9 +11,8 @@ app.factory('auth', [
 				
 				// grab the artists they follow
 				return artists.getUserFollowing().then(function(res){
-					console.log(res);
-					$rootScope.artists = res.artists;
-					$rootScope.artistTotal = res.artistTotal;
+					// $rootScope.artists = res.artists;
+					// $rootScope.artistTotal = res.artistTotal;
 				});
 			}
 		};

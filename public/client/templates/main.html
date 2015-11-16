@@ -1,8 +1,8 @@
 <div class='row'>
-	<h1>Artists you follow <p class="inline text-muted small">({{artistTotal}})</p></h1>
-	<p ng-if='!artists.length'>Sign in to see artists you follow</p>
+	<h1>Artists you follow <p ng-if='user' class="inline text-muted small">({{artistTotal}})</p></h1>
+	<p ng-if='!artists.length && !user'>Sign in to see artists you follow</p>
     
-    <div class='row'>
+    <div class='row' ng-if='user'>
 	    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class='btn btn-warning'>
 	        Previous
 	    </button>
