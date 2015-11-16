@@ -11,6 +11,14 @@ app.controller('MainCtrl', [
 		};
 		$scope.artists = [];
 
+		$scope.addPage = function(){
+			$scope.currentPage = $scope.currentPage + 1;
+		};
+
+		$scope.lessPage = function(){
+			$scope.currentPage = $scope.currentPage - 1;
+		};
+
 		// grab the artists they follow
 		artists.getUserFollowing().then(function(artistsUserFollows){
 			$scope.artistTotal = artistsUserFollows.length;

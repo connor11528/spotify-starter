@@ -3,10 +3,10 @@
 	<p ng-if='!artists.length && !user'>Sign in to see artists you follow</p>
     
     <div class='row' ng-if='user'>
-	    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class='btn btn-warning'>
+	    <button ng-disabled="currentPage == 0" ng-click="lessPage()" class='btn btn-warning'>
 	        Previous
 	    </button>
-	    <button ng-disabled="currentPage >= artists.length/4 - 1" ng-click="currentPage=currentPage+1" class='btn btn-warning'>
+	    <button ng-disabled="currentPage >= artists.length/4 - 1" ng-click="addPage()" class='btn btn-warning'>
 	        Next
 	    </button>
 	    <h2 class='inline'>{{currentPage+1}}/{{totalPages(artists)}}</h2>
