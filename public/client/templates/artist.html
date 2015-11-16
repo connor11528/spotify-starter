@@ -5,9 +5,30 @@
 	</div>
 	<div class='col-sm-6'>
 		<h1>{{artist.name}}</h1>
-		<p>Followers: {{artist.followers.total}}</p>
-		<p>Popularity: {{artist.popularity}}</p>
-		<a target='_blank' ng-href='{{artist.external_urls.spotify}}'>Spotify URL</a>
+		<p>On tour until: {{songkickInfo.onTourUntil}}</p>
+		<!-- <p>Followers: {{artist.followers.total}}</p>
+		<p>Popularity: {{artist.popularity}}</p> -->
+		<div class='row'>
+			<a target='_blank' ng-href='{{artist.external_urls.spotify}}'>Spotify URL</a>
+		</div>
+		<div class='row'>
+			<a target='_blank' ng-href='{{songkickInfo.uri}}'>Songkick URL</a>
+		</div>
+		
 	</div>
 </div>
-<!-- <pre>{{artist | json}}</pre> -->
+<div class='row text-center'>
+	<h2>Upcoming Shows</h2>
+</div>
+<div class='row'>
+	<ul ng-repeat='evt in upcomingEvents' class="list-group-item">
+		<li class="list-group-item">
+			<h3>{{evt.displayName}}</h3>
+			<p>Starts: {{evt.start.date}}</p>
+			<p>City: {{evt.location.city}}</p>
+			<p>
+				<a target='_blank' ng-href='{{evt.uri}}'>Event link</a>
+			</p>
+		</ul>
+	</ul>
+</div>
