@@ -1,15 +1,10 @@
 Spotify starter
 =====
-
+> Find concerts happening near you for artists you follow on Spotify
 
 * angular-spotify: https://github.com/eddiemoore/angular-spotify
 
-* spotify-web-api-node: https://github.com/thelinmichael/spotify-web-api-node
-
-#### Todo
-
-* load upcoming shows
-* follow/unfollow in mongo
+* songkick API: http://www.songkick.com/developer/upcoming-events-for-artist
 
 #### Getting started
 ```
