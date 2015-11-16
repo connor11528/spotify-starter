@@ -17,7 +17,9 @@
 		class='col-sm-3'>
 
 		<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
-		<h3>{{artist.name}}</h3>
+		<h3>
+			<a ui-sref="artists.detail({id: artist.id})">{{artist.name}}</a>
+		</h3>
 	</div>
 	
 </div>

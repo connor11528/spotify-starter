@@ -18,7 +18,6 @@ app.controller('ShowsCtrl', [
 			apikey: SONGKICK_KEY
 		}
 	}).then(function(res){
-		console.log(res.data.resultsPage.results.event);
 		$scope.shows = res.data.resultsPage.results.event;
 	});
 	

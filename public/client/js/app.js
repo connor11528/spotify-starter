@@ -36,19 +36,15 @@ app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 			templateUrl: "client/templates/main.html",
 			controller: 'MainCtrl'
 		})
-		// .state('artists', {
-		// 	url: "/artists",
-		// 	templateUrl: "templates/artists.html",
-		// 	controller: 'ArtistsCtrl',
-		// 	resolve: {
-		// 		function($rootScope){
-		// 			if($rootScope.user)
-		// 				return true;
-		// 			else
-		// 				return false;
-		// 		}
-		// 	}
-		// })
+		.state('artists', {
+			url: "/artists",
+			templateUrl: "client/templates/artists.html",
+		})
+		.state('artists.detail', {
+			url: "/:id",
+			templateUrl: "client/templates/artist.html",
+			controller: 'ArtistCtrl'
+		})
 
 	$urlRouterProvider.otherwise("/");
 });

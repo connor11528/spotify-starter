@@ -1,0 +1,13 @@
+
+<div class='row'>
+	<div class='col-sm-3'>
+		<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
+	</div>
+	<div class='col-sm-6'>
+		<h1>{{artist.name}}</h1>
+		<p>Followers: {{artist.followers.total}}</p>
+		<p>Popularity: {{artist.popularity}}</p>
+		<a target='_blank' ng-href='{{artist.external_urls.spotify}}'>Spotify URL</a>
+	</div>
+</div>
+<!-- <pre>{{artist | json}}</pre> -->
