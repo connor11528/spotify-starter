@@ -7,6 +7,9 @@ var app = angular.module('spotify-starter', [
 	'spotify'
 ]);
 
+app.constant('SONGKICK_KEY', '1RVDAy31QZN5QMUh');
+app.constant('API_URL', 'api/');
+
 app.run(function($rootScope, $cookies, Spotify, auth){
 	$rootScope.artists = [];
 	$rootScope.artistTotal = 0;
@@ -19,9 +22,6 @@ app.run(function($rootScope, $cookies, Spotify, auth){
 		});
 	}
 });
-
-
-app.constant('API_URL', 'api/');
 
 app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 	// Spotify config

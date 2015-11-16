@@ -28,16 +28,16 @@
 		<ul class="event-list">
 			<li>
 				<time datetime="2014-07-20">
-					<span class="day">{{show.datetime | date: 'd'}}</span>
-					<span class="month">{{show.datetime | date: 'MMM'}}</span>
+					<span class="day">{{show.start.date.datetime | date: 'd'}}</span>
+					<span class="month">{{show.start.date.datetime | date: 'MMM'}}</span>
 					<!-- year and time are set to display none -->
-					<span class="year">{{show.datetime | date: 'yyyy'}}</span>
-					<span class="time">{{show.datetime | date: 'HH:mm'}}</span>
+					<span class="year">{{show.start.date.datetime | date: 'yyyy'}}</span>
+					<span class="time">{{show.start.date.datetime | date: 'HH:mm'}}</span>
 				</time>
 				<img alt="Show thumbnail image" ng-src="{{show.img_thumb}}" />
 				<div class="info">
-					<h2 class="title">{{show.title}}</h2>
-					<p class="desc">{{show.description}}</p>
+					<h2 class="title">{{show.displayName}}</h2>
+					<p class="desc">{{show.venue.displayName}}</p>
 					<p>Artists: {{show.artists}} </p>
 					<div class='btn btn-warning'>Tickets</div>
 				</div>
