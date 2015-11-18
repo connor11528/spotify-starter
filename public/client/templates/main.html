@@ -1,58 +1,35 @@
 <div class='row'>
-	<h1>Artists you follow <p ng-if='user' class="inline text-muted small">({{artistTotal}})</p></h1>
-	<p ng-if='!artists.length && !user'>Sign in to see artists you follow</p>
-    
-    <div class='row' ng-if='user'>
-	    <button ng-disabled="currentPage == 0" ng-click="lessPage()" class='btn btn-warning'>
-	        Previous
-	    </button>
-	    <button ng-disabled="currentPage >= artists.length/4 - 1" ng-click="addPage()" class='btn btn-warning'>
-	        Next
-	    </button>
-	    <h2 class='inline'>{{currentPage+1}}/{{totalPages(artists)}}</h2>
-    </div>
+	<div class='col-sm-12'>
+		<h1 class='text-center'>Artists you follow <p ng-if='user' class="inline text-muted small">({{artistTotal}})</p></h1>
+		<p ng-if='!artists.length && !user' class='text-center large-text'>Sign in to see artists you follow</p>
+	    
+	    <div class='row' ng-if='user' style='margin-bottom:10px;'>
+	    	<div class='col-sm-12'>
+			    <button ng-disabled="currentPage == 0" ng-click="lessPage()" class='btn btn-warning'>
+			    	<i class="fa fa-arrow-left fa-3"></i>
+			        Previous
+			    </button>
+			    <button ng-disabled="currentPage >= artists.length/4 - 1" ng-click="addPage()" class='btn btn-warning pull-right'>
+			        Next
+			        <i class="fa fa-arrow-right fa-3"></i>
+			    </button>
+			    <h2 class='inline' style='margin-left:30%;'>{{currentPage+1}} of {{totalPages(artists)}} pages</h2>
+		    </div>
+	    </div>
 
-	<div ng-if='artists.length > 0' 
-		ng-repeat='artist in artists | startFrom:currentPage*4 | limitTo:4' 
-		class='col-sm-3'>
+		<div ng-if='artists.length > 0' 
+			ng-repeat='artist in artists | startFrom:currentPage*4 | limitTo:4' 
+			class='col-md-3 col-sm-6 text-center'>
 
-		<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
-		<h3>
-			<a ui-sref="artists.detail({id: artist.id})">{{artist.name}}</a>
-		</h3>
+			<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
+			<h3>
+				<a ui-sref="artists.detail({id: artist.id})">{{artist.name}}</a>
+			</h3>
+		</div>
 	</div>
-	
 </div>
-<div class="row" ng-controller='ShowsCtrl'>
-	<h1>Upcoming shows</h1>
-
-	<div ng-repeat='show in shows' class="col-xs-12 col-sm-8">
-		<ul class="event-list">
-			<li>
-				<time datetime="2014-07-20">
-					<span class="day">{{show.start.date.datetime | date: 'd'}}</span>
-					<span class="month">{{show.start.date.datetime | date: 'MMM'}}</span>
-					<!-- year and time are set to display none -->
-					<span class="year">{{show.start.date.datetime | date: 'yyyy'}}</span>
-					<span class="time">{{show.start.date.datetime | date: 'HH:mm'}}</span>
-				</time>
-				<img alt="Show thumbnail image" ng-src="{{show.img_thumb}}" />
-				<div class="info">
-					<h2 class="title">{{show.displayName}}</h2>
-					<p class="desc">{{show.venue.displayName}}</p>
-					<p>Artists: {{show.artists}} </p>
-					<div class='btn btn-warning'>Tickets</div>
-				</div>
-				<!--
-				<div class="social">
-					<ul>
-						<li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
-						<li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
-						<li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
-					</ul>
-				</div>
-				-->
-			</li>
-		</ul>
+<div class='row text-center' ng-if='!user'>
+	<div class='col-sm-12'>
+		<img src='/client/img/diagonal-up-arrow.png' />
 	</div>
 </div>

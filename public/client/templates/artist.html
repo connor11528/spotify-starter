@@ -1,34 +1,50 @@
+<div class='container'>
+	<div class='row' style='margin-bottom:25px;'>
+		<div class='col-sm-6'>
+			<div class='btn btn-default' ui-sref='home'> 
+				<i class="fa fa-arrow-left fa-3"></i>
+				Back
+			</div>
+		</div>
+	</div>
 
-<div class='row'>
-	<div class='col-sm-3'>
-		<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
-	</div>
-	<div class='col-sm-6'>
-		<h1>{{artist.name}}</h1>
-		<p>On tour until: {{songkickInfo.onTourUntil}}</p>
-		<!-- <p>Followers: {{artist.followers.total}}</p>
-		<p>Popularity: {{artist.popularity}}</p> -->
-		<div class='row'>
-			<a target='_blank' ng-href='{{artist.external_urls.spotify}}'>Spotify URL</a>
+	<div class='row'>
+		<div class='col-sm-3'>
+			<img ng-src='{{artist.images[2].url || "http://placehold.jp/210x210.png"}}' class='artist-image' />
 		</div>
-		<div class='row'>
-			<a target='_blank' ng-href='{{songkickInfo.uri}}'>Songkick URL</a>
+		<div class='col-sm-6'>
+			<h1>{{artist.name}}</h1>
+			<p>On tour until: {{songkickInfo.onTourUntil || "--"}}</p>
+			<!-- <p>Followers: {{artist.followers.total}}</p>
+			<p>Popularity: {{artist.popularity}}</p> -->
+			<div class='row'>
+				<a target='_blank' ng-href='{{artist.external_urls.spotify}}'>Spotify URL</a>
+			</div>
+			<div class='row'>
+				<a target='_blank' ng-href='{{songkickInfo.uri}}'>Songkick URL</a>
+			</div>
+			
 		</div>
-		
 	</div>
-</div>
-<div class='row text-center'>
-	<h2>Upcoming Shows</h2>
-</div>
-<div class='row'>
-	<ul ng-repeat='evt in upcomingEvents' class="list-group-item">
-		<li class="list-group-item">
-			<h3>{{evt.displayName}}</h3>
-			<p>Starts: {{evt.start.date}}</p>
-			<p>City: {{evt.location.city}}</p>
-			<p>
-				<a target='_blank' ng-href='{{evt.uri}}'>Event link</a>
-			</p>
+	<div class='row text-center'>
+		<h2>Upcoming Shows</h2>
+	</div>
+	<div class='row large-text'>
+		<div ng-show="loading" class='text-center'>
+			<i class="fa fa-spinner fa-6"></i> &nbsp;&nbsp;&nbsp; LOADING...
+		</div>
+
+		<div ng-show="!upcomingEvents.length && !loading" class='text-center'>{{artist.name}} does not have upcoming shows</div>
+
+		<ul ng-repeat='evt in upcomingEvents' class="list-group-item">
+			<li class="list-group-item">
+				<h3>{{evt.displayName}}</h3>
+				<p><b>Starts:</b> &nbsp;&nbsp;&nbsp; {{evt.start.date}}</p>
+				<p><b>City:</b> &nbsp;&nbsp;&nbsp; {{evt.location.city}}</p>
+				<p>
+					<a target='_blank' ng-href='{{evt.uri}}'>Event link</a>
+				</p>
+			</li>
 		</ul>
-	</ul>
+	</div>
 </div>
