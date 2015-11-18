@@ -26,11 +26,11 @@ app.run(function($rootScope, $cookies, Spotify, auth){
 app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 	// Spotify config
 	SpotifyProvider.setClientId('68e85fc65d524c1fb18f5c0d0a251fc2');
-	// SpotifyProvider.setRedirectUri('http://localhost:3000/api/spotify/callback');
 
+	// conditionally set rederict uri
 	var redirectURL = window.location.href.indexOf('localhost') > -1 ? 'http://localhost:3000/api/spotify/callback' : 'http://showjunkie.herokuapp.com/api/spotify/callback';
 	SpotifyProvider.setRedirectUri(redirectURL);
-
+	// Spotify permissions
 	SpotifyProvider.setScope('user-read-email user-follow-read user-follow-modify user-library-read');
 
 	// Routes

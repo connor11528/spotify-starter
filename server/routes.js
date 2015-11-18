@@ -88,9 +88,7 @@ module.exports = function(app){
 
 	// client catch all route
 	router.get('/*', function(req, res) {
-		var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
-		res.sendFile(rootPath + 'public/client.html', { user: req.user, env: env });
+		res.sendFile(rootPath + 'public/client.html', { user: req.user });
 	});
 
 	app.use('/api', apiRouter);
