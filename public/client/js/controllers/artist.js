@@ -14,11 +14,16 @@ app.controller('ArtistCtrl', [
 			$scope.artist = res;
 
 			Songkick.searchByName($scope.artist.name).then(function(res){
-				$scope.songkickInfo = res;
+				var artistData = res.resultsPage.results.artist[0];
+				$scope.songkickInfo = artistData;
 
-				Songkick.artistUpcomingEvents(res.id).then(function(upcomingEvents){
+				Songkick.artistUpcomingEvents(artistData.id).then(function(eventsRes){
+					var upcomingEvents = eventsRes.resultsPage.results.event;
 					$scope.upcomingEvents = upcomingEvents;
 					$scope.loading = false;
+
+					// because we send request using jQuery in factory
+					$scope.$apply();
 				});
 			});
 		});
