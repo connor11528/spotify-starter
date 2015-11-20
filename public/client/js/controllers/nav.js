@@ -23,6 +23,7 @@ app.controller('NavCtrl', [
 						if(res.data.success){
 							// log user in
 							$cookies.put('spotify-token', token);
+							window.localStorage.setItem('spotify-token', token);
 							auth.userLoggedIn(userData);
 						}
 					});
