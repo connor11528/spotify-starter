@@ -10,7 +10,12 @@ var app = angular.module('spotify-starter', [
 app.constant('SONGKICK_KEY', '1RVDAy31QZN5QMUh');
 app.constant('API_URL', 'api/');
 
-app.run(function($rootScope, $cookies, Spotify, auth){
+app.run([
+	'$rootScope', 
+	'$cookies', 
+	'Spotify', 
+	'auth',
+	function($rootScope, $cookies, Spotify, auth){
 	$rootScope.artists = [];
 	$rootScope.artistTotal = 0;
 	
@@ -21,14 +26,19 @@ app.run(function($rootScope, $cookies, Spotify, auth){
 			auth.userLoggedIn(userData);
 		});
 	}
-});
+}]);
 
-app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
+app.config([
+	'$stateProvider', 
+	'$urlRouterProvider', 
+	'SpotifyProvider',
+	function($stateProvider, $urlRouterProvider, SpotifyProvider){
 	// Spotify config
 	SpotifyProvider.setClientId('68e85fc65d524c1fb18f5c0d0a251fc2');
 
 	// conditionally set rederict uri
-	var redirectURL = window.location.href.indexOf('localhost') > -1 ? 'http://localhost:3000/api/spotify/callback' : 'http://showjunkie.herokuapp.com/api/spotify/callback';
+	var localPort = window.location.href.indexOf('3000') > -1 ? '3000' : '5000';
+	var redirectURL = window.location.href.indexOf('localhost') > -1 ? 'http://localhost:' + localPort + '/api/spotify/callback' : 'http://showjunkie.herokuapp.com/api/spotify/callback';
 	SpotifyProvider.setRedirectUri(redirectURL);
 	// Spotify permissions
 	SpotifyProvider.setScope('user-read-email user-follow-read user-follow-modify user-library-read');
@@ -51,4 +61,4 @@ app.config(function($stateProvider, $urlRouterProvider, SpotifyProvider){
 		})
 
 	$urlRouterProvider.otherwise("/");
-});
+}]);

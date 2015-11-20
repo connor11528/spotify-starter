@@ -11,7 +11,7 @@ app.controller('NavCtrl', [
 		$scope.requestSpotifyLogin = function(){
 
 			Spotify.login().then(function(token){
-				
+				console.log(token);
 				Spotify.setAuthToken(token);
 				Spotify.getCurrentUser().then(function(userData){					
 

@@ -7,7 +7,7 @@
 
 </head>
 <body>
-  <h1>Saving user information to browser...</h1>
+  <h1>Contacting Spotify...</h1>
   
   <script>
     window.onload = function () {
@@ -19,6 +19,8 @@
         // login success
         var token = window.location.hash.split('&')[0].split('=')[1];
         localStorage.setItem('spotify-token', token);
+
+        document.cookie = 'spotify-token='+token;
       }
     }
   </script>
