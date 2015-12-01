@@ -43,8 +43,9 @@
 			<input type='text' class='form-control' placeholder='Search artists' ng-model='artistSearch' />
 			<span class="input-group-addon cursor-pointer" ng-click='search(artistSearch)'>Search</span>
 		</div>
-		<ul class="list-group-item">
+		<ul class="list-group">
 			<li class="list-group-item" ng-repeat='result in searchResults'>
+				<span class="badge">Follow</span>
 				<a ui-sref="artists.detail({id: result.id})">
 					<h4>{{result.name}}</h4>
 				</a>

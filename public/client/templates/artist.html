@@ -43,7 +43,7 @@
 
 			<div ng-show="!upcomingEvents.length && !loading" class='text-center'>{{artist.name}} does not have upcoming shows</div>
 
-			<ul class="list-group-item">
+			<ul class="list-group">
 				<li class="list-group-item" ng-repeat='evt in upcomingEvents'>
 					<h3>{{evt.displayName}}</h3>
 					<p><b>Starts:</b> &nbsp;&nbsp;&nbsp; {{evt.start.date}}</p>
