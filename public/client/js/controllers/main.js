@@ -6,6 +6,8 @@ app.controller('MainCtrl', [
 	"artists", 
 	function($scope, $rootScope, Spotify, artists){
 		$scope.currentPage = 0;
+		$scope.searchResults = [];
+
 		$scope.totalPages = function(artists){
 			return Math.ceil(artists.length/4);
 		};
@@ -23,4 +25,11 @@ app.controller('MainCtrl', [
 			$rootScope.artistTotal = artistsUserFollows.length;
 			$rootScope.artists = artistsUserFollows;
 		});
+
+		$scope.search = function(searchTerm){
+			Spotify.search(searchTerm, 'artist', {})
+				.then(function(res){
+					$scope.searchResults = res.artists.items;
+				});
+		};
 	}]);

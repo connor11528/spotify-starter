@@ -33,3 +33,22 @@
 		<img src='/client/img/diagonal-up-arrow.png' />
 	</div>
 </div>
+
+<div class='row' ng-if='user' style='margin-top:25px;'>
+	<div class='col-sm-12'>
+		<h1 class='text-center'>Follow more artists</h1>
+	</div>
+	<div class='col-sm-12'>
+		<div class='input-group'>
+			<input type='text' class='form-control' placeholder='Search artists' ng-model='artistSearch' />
+			<span class="input-group-addon cursor-pointer" ng-click='search(artistSearch)'>Search</span>
+		</div>
+		<ul class="list-group-item">
+			<li class="list-group-item" ng-repeat='result in searchResults'>
+				<a ui-sref="artists.detail({id: result.id})">
+					<h4>{{result.name}}</h4>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

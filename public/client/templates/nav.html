@@ -10,7 +10,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-if='user' id='logged-in'>
         	<span ng-bind='user.display_name'></span>
-        	<span ng-click='logout()' class='logout-btn'> (logout)</span>
+        	<span ng-click='logout()' class='cursor-pointer'> (logout)</span>
         </li>
         <li ng-if='!user'>		  	
         	<a href class='btn btn-success' ng-click='requestSpotifyLogin()'>
