@@ -3,7 +3,7 @@
 		<div class='col-sm-6'>
 			<div class='btn btn-default' ui-sref='home'> 
 				<i class="fa fa-arrow-left fa-3"></i>
-				Back
+				Home
 			</div>
 		</div>
 	</div>
@@ -27,24 +27,42 @@
 		</div>
 	</div>
 	<div class='row text-center'>
-		<h2>Upcoming Shows</h2>
+		<div class='col-sm-8'>
+			<h2>Upcoming Shows</h2>
+		</div>
+		<div class='col-sm-4'>
+			<h2>Related artists</h2>
+		</div>
 	</div>
 	<div class='row large-text'>
-		<div ng-show="loading" class='text-center'>
-			<i class="fa fa-spinner fa-6"></i> &nbsp;&nbsp;&nbsp; LOADING...
+		<div class='col-sm-8'>
+			<!-- artist's concerts -->
+			<div ng-show="loading" class='text-center'>
+				<i class="fa fa-spinner fa-6"></i> &nbsp;&nbsp;&nbsp; LOADING...
+			</div>
+
+			<div ng-show="!upcomingEvents.length && !loading" class='text-center'>{{artist.name}} does not have upcoming shows</div>
+
+			<ul class="list-group-item">
+				<li class="list-group-item" ng-repeat='evt in upcomingEvents'>
+					<h3>{{evt.displayName}}</h3>
+					<p><b>Starts:</b> &nbsp;&nbsp;&nbsp; {{evt.start.date}}</p>
+					<p><b>City:</b> &nbsp;&nbsp;&nbsp; {{evt.location.city}}</p>
+					<p>
+						<a target='_blank' ng-href='{{evt.uri}}'>Event link</a>
+					</p>
+				</li>
+			</ul>
 		</div>
-
-		<div ng-show="!upcomingEvents.length && !loading" class='text-center'>{{artist.name}} does not have upcoming shows</div>
-
-		<ul ng-repeat='evt in upcomingEvents' class="list-group-item">
-			<li class="list-group-item">
-				<h3>{{evt.displayName}}</h3>
-				<p><b>Starts:</b> &nbsp;&nbsp;&nbsp; {{evt.start.date}}</p>
-				<p><b>City:</b> &nbsp;&nbsp;&nbsp; {{evt.location.city}}</p>
-				<p>
-					<a target='_blank' ng-href='{{evt.uri}}'>Event link</a>
-				</p>
-			</li>
-		</ul>
+		<div class='col-sm-4'>
+			<!-- related artists -->
+			<ul class="list-group-item">
+				<li class="list-group-item" ng-repeat='related in relatedArtists'>
+					<a ui-sref="artists.detail({id: related.id})">
+						<h4>{{related.name}}</h4>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

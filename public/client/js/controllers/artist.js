@@ -7,6 +7,7 @@ app.controller('ArtistCtrl', [
 	function($scope, $stateParams, Spotify, Songkick){
 		var artist_spotify_id = $stateParams.id;
 		$scope.artist = {};
+		$scope.relatedArtists = [];
 		$scope.loading = true;
 
 		// get artist info from spotify
@@ -28,6 +29,10 @@ app.controller('ArtistCtrl', [
 			});
 		});
 
-		// top tracks, albums, related artists
+		// related artists
+		Spotify.getRelatedArtists(artist_spotify_id).then(function(res){
+			console.log(res);
+			$scope.relatedArtists = res.artists;
+		});
 
 	}]);
