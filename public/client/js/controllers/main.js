@@ -50,5 +50,12 @@ app.controller('MainCtrl', [
 				$scope.popularArtists.push(res);
 			});
 		});
+
+		// follow artist
+		$scope.followArtist = function(artistId){
+			artists.follow(artistId).then(function(res){
+				console.log('controller: ', res);
+			});
+		};
 		
 	}]);

@@ -4,9 +4,22 @@ app.factory('artists', [
 	"$http",
 	"$cookies",
 	"$q",
-	function($rootScope, $http, $cookies, $q){
+	"API_URL",
+	function($rootScope, $http, $cookies, $q, API_URL){
 
 	return {
+		follow: function(artistId){
+			console.log($rootScope.user);
+			var _payload = {
+				userId:
+				artistId: artistId
+				token: $rootScope.user.SJ_TOKEN
+			}
+			return $http.post(API_URL + 'follow/artist', _payload).then(function(res){
+				console.log('factory: ', res);
+				return res;
+			});
+		},
 		getUserFollowing: function(){
 			var allArtists = [];
 			var _params = {

@@ -56,13 +56,14 @@
 		</div>
 		<div class='col-sm-4'>
 			<!-- related artists -->
-			<ul class="list-group-item">
-				<li class="list-group-item" ng-repeat='related in relatedArtists'>
-					<a ui-sref="artists.detail({id: related.id})">
-						<h4>{{related.name}}</h4>
+			<div class="list-group">
+				<div ng-repeat='related in relatedArtists' class="list-group-item clearfix">
+					<a ui-sref="artists.detail({id: related.id})" >
+						<h4 class='inline-block'>{{related.name}}</h4>
 					</a>
-				</li>
-			</ul>
+					<button class="btn btn-primary pull-right">Follow</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

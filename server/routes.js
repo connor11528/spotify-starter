@@ -5,6 +5,7 @@ var express = require('express'),
 	apiRouter = express.Router(),
 	User = require('./models/user'),
 	Show = require('./models/show'),
+	userCtrl = require('./controllers/user'),
 	router = express.Router();
 
 module.exports = function(app){	
@@ -21,6 +22,9 @@ module.exports = function(app){
 			res.json(users);
 		});
 	});
+
+	// follow an artist
+	apiRouter.post('/follow/artist', userCtrl.followArtist);
 
 	// add user
 	apiRouter.post('/users', function(req, res){
