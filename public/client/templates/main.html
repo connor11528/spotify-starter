@@ -35,10 +35,13 @@
 </div>
 
 <div class='row' ng-if='user' style='margin-top:25px;'>
-	<div class='col-sm-12'>
+	<div class='col-sm-6'>
 		<h1 class='text-center'>Follow more artists</h1>
 	</div>
-	<div class='col-sm-12'>
+	<div class='col-sm-6'>
+		<h1 class='text-center'>Popular artists</h1>
+	</div>
+	<div class='col-sm-6'>
 		<div class='input-group'>
 			<input type='text' class='form-control' placeholder='Search artists' ng-model='artistSearch' />
 			<span class="input-group-addon cursor-pointer" ng-click='search(artistSearch)'>Search</span>
@@ -51,5 +54,15 @@
 				</a>
 			</li>
 		</ul>
+	</div>
+	<div class='col-sm-6'>
+		<div class="list-group">
+			<div ng-repeat='pop in popularArtists' class="list-group-item clearfix">
+				<a ui-sref="artists.detail({id: pop.id})" >
+					<h4 class='inline-block'>{{pop.name}}</h4>
+				</a>
+				<button class="btn btn-primary pull-right">Follow</button>
+			</div>
+		</div>
 	</div>
 </div>
