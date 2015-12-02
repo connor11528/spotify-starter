@@ -27,7 +27,6 @@ app.factory('auth', [
 						);
 
 						$rootScope.user = userData;
-						console.log($rootScope.user);
 					}
 				});
 

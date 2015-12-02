@@ -53,9 +53,27 @@ app.controller('MainCtrl', [
 
 		// follow artist
 		$scope.followArtist = function(artistId){
-			artists.follow(artistId).then(function(res){
-				console.log('controller: ', res);
+			artists.follow(artistId).then(function(){
+				Spotify.getArtist(artistId).then(function(artistToFollow){
+					console.log(artistToFollow);
+					$rootScope.artists.unshift(artistToFollow);
+					console.log($rootScope.artists);
+				});				
 			});
+		};
+
+		// follow artist
+		$scope.unfollowArtist = function(artistId){
+			artists.unfollow(artistId).then(function(){
+				var artistToUnfollow = _.find($rootScope.artists, function(artist, i){
+					return artist.id == artistId;
+				});
+				_.remove($rootScope.artists, artistToUnfollow);
+			});
+		};
+
+		$scope.userFollows = function(artistId){
+			return _.includes(_.pluck($rootScope.artists, "id"), artistId);
 		};
 		
 	}]);
