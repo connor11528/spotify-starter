@@ -37,7 +37,11 @@ module.exports = function(app){
 			if(err) throw err;
 
 			if(user){
-				res.json({ success: true, message: 'User already exists, good to go!' });
+				res.json({
+					success: true, 
+					message: 'User already exists, good to go!',
+					user: user
+				});
 			} else {
 				// create a new user
 				var newUser = new User({

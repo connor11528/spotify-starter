@@ -4,15 +4,32 @@ app.factory('auth', [
 	"$rootScope", 
 	"artists",
 	"$cookies",
-	function($rootScope, artists, $cookies){
+	"$http",
+	"API_URL",
+	function($rootScope, artists, $cookies, $http, API_URL){
 		return {
+			// must return promise
 			userLoggedIn: function(userData){
-				// log user in, attach token
-				var user_token = $cookies.get('spotify-token');
-				angular.extend(userData, { SJ_TOKEN: user_token })
-				$rootScope.user = userData;
 
-				// create user in database..
+				// create user in database (email, name, admin)
+				return $http.post(API_URL + 'users', {
+					email: userData.email,
+					name: userData.display_name
+				}).then(function(res){
+					if(res.data.success){
+						var showjunkie_user_data = res.data.user;
+
+						// log user in, attach token and id
+						angular.extend(
+							userData, 
+							{ SJ_TOKEN: $cookies.get('spotify-token') }, 
+							{ SJ_USER_ID: showjunkie_user_data._id }
+						);
+
+						$rootScope.user = userData;
+						console.log($rootScope.user);
+					}
+				});
 
 				// grab the artists they follow
 				return artists.getUserFollowing().then(function(artistsUserFollows){

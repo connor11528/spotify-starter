@@ -11,22 +11,20 @@ app.controller('NavCtrl', [
 		$scope.requestSpotifyLogin = function(){
 
 			Spotify.login().then(function(token){
-				console.log(token);
-				Spotify.setAuthToken(token);
-				Spotify.getCurrentUser().then(function(userData){					
 
-					// create user
-					$http.post(API_URL + 'users', {
-						email: userData.email,
-						name: userData.display_name
-					}).then(function(res){
-						if(res.data.success){
-							// log user in
-							$cookies.put('spotify-token', token);
-							window.localStorage.setItem('spotify-token', token);
-							auth.userLoggedIn(userData);
-						}
+				// set cookies and tokens
+				Spotify.setAuthToken(token);
+				$cookies.put('spotify-token', token);
+				window.localStorage.setItem('spotify-token', token);
+
+				// get user from spotify
+				Spotify.getCurrentUser().then(function(userData){
+
+					// log in to showjunkie
+					auth.userLoggedIn(userData).then(function(res){
+						console.log('boom! ', res);
 					});
+
 				});
 			});
 		};
