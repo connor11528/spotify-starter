@@ -23,7 +23,16 @@
 			<div class='row'>
 				<a target='_blank' ng-href='{{songkickInfo.uri}}'>Songkick URL</a>
 			</div>
-			
+		</div>
+		<div class='col-sm-3'>
+			<button ng-click='followArtist(artist.id)' class="btn btn-primary btn-lg" ng-if='!userFollows(artist.id)'>
+				<i class="fa fa-plus fa-3"></i>
+				 Follow
+			</button>
+			<button ng-click='unfollowArtist(artist.id)' class="btn btn-success btn-lg" ng-if='userFollows(artist.id)'>
+				<i class="fa fa-check fa-3"></i>
+				 Following
+			</button>
 		</div>
 	</div>
 	<div class='row text-center'>

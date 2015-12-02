@@ -27,13 +27,12 @@ app.factory('auth', [
 						);
 
 						$rootScope.user = userData;
+						// grab the artists they follow
+						return artists.getUserFollowing().then(function(artistsUserFollows){
+							$rootScope.artistTotal = artistsUserFollows.length;
+							$rootScope.artists = artistsUserFollows;
+						});
 					}
-				});
-
-				// grab the artists they follow
-				return artists.getUserFollowing().then(function(artistsUserFollows){
-					$rootScope.artistTotal = artistsUserFollows.length;
-					$rootScope.artists = artistsUserFollows;
 				});
 			},
 			logout: function(){

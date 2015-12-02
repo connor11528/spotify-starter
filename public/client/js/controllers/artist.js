@@ -4,7 +4,9 @@ app.controller('ArtistCtrl', [
 	"$stateParams", 
 	"Spotify",
 	"Songkick",
-	function($scope, $stateParams, Spotify, Songkick){
+	"artists",
+	"$rootScope",
+	function($scope, $stateParams, Spotify, Songkick, artists, $rootScope){
 		var artist_spotify_id = $stateParams.id;
 		$scope.artist = {};
 		$scope.relatedArtists = [];
@@ -31,8 +33,30 @@ app.controller('ArtistCtrl', [
 
 		// related artists
 		Spotify.getRelatedArtists(artist_spotify_id).then(function(res){
-			console.log(res);
 			$scope.relatedArtists = res.artists;
 		});
+
+		//------ duplicated from main.js ------
+		// follow artist
+		$scope.followArtist = function(artistId){
+			artists.follow(artistId).then(function(){
+				Spotify.getArtist(artistId).then(function(artistToFollow){
+					$rootScope.artists.unshift(artistToFollow);
+				});				
+			});
+		};
+
+		// follow artist
+		$scope.unfollowArtist = function(artistId){
+			artists.unfollow(artistId).then(function(){
+				var artistToUnfollow = _.find($rootScope.artists, function(artist, i){
+					return artist.id == artistId;
+				});
+				_.remove($rootScope.artists, artistToUnfollow);
+			});
+		};
+
+		$scope.userFollows = artists.userFollows;
+		//------ /duplicated from main.js ------
 
 	}]);

@@ -55,9 +55,7 @@ app.controller('MainCtrl', [
 		$scope.followArtist = function(artistId){
 			artists.follow(artistId).then(function(){
 				Spotify.getArtist(artistId).then(function(artistToFollow){
-					console.log(artistToFollow);
 					$rootScope.artists.unshift(artistToFollow);
-					console.log($rootScope.artists);
 				});				
 			});
 		};
@@ -72,8 +70,6 @@ app.controller('MainCtrl', [
 			});
 		};
 
-		$scope.userFollows = function(artistId){
-			return _.includes(_.pluck($rootScope.artists, "id"), artistId);
-		};
+		$scope.userFollows = artists.userFollows;
 		
 	}]);

@@ -10,19 +10,13 @@ app.factory('artists', [
 
 		var artists = {
 			follow: function(artistId){
-
-				return Spotify.follow('artist', artistId).then(function(){
-					$rootScope.artists.push(artistId);
-				});
+				return Spotify.follow('artist', artistId);
 			},
 			unfollow: function(artistId){
-
-				return Spotify.unfollow('artist', artistId).then(function(){
-					var _index = $rootScope.artists.indexOf(artistId);
-					if (_index !== -1) {
-    					$rootScope.artists.splice(_index, 1);
-					}
-				});
+				return Spotify.unfollow('artist', artistId);
+			},
+			userFollows: function(artistId){
+				return _.includes(_.pluck($rootScope.artists, "id"), artistId);
 			},
 			getUserFollowing: function(){
 				var allArtists = [];
