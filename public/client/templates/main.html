@@ -52,7 +52,13 @@
 				<a ui-sref="artists.detail({id: result.id})" >
 					<h4 class='inline-block'>{{result.name}}</h4>
 				</a>
-				<button class="btn btn-primary pull-right">Follow</button>
+				<button ng-click='followArtist(result.id)' class="btn btn-primary pull-right" ng-if='!userFollows(result.id)'>
+					<i class="fa fa-plus fa-3"></i> Follow
+				</button>
+				<button ng-click='unfollowArtist(result.id)' class="btn btn-success pull-right" ng-if='userFollows(result.id)'>
+					<i class="fa fa-check fa-3"></i>
+					 Following
+				</button>
 			</div>
 		</div>
 	</div>
