@@ -5,7 +5,8 @@ app.controller('MainCtrl', [
 	"$q",
 	"Spotify", 
 	"artists",
-	function($scope, $rootScope, $q, Spotify, artists){
+	"Songkick",
+	function($scope, $rootScope, $q, Spotify, artists, Songkick){
 		$scope.currentPage = 0;
 		$scope.searchResults = [];
 
@@ -21,11 +22,52 @@ app.controller('MainCtrl', [
 			$scope.currentPage = $scope.currentPage - 1;
 		};
 
-		// grab the artists they follow
-		artists.getUserFollowing().then(function(artistsUserFollows){
-			$rootScope.artistTotal = artistsUserFollows.length;
-			$rootScope.artists = artistsUserFollows;
-		});
+
+		// grab the artists they follow (from spotify)
+		if(!$rootScope.showsForUser){
+
+			$rootScope.showsForUser = [];
+			artists.getUserFollowing()
+				.then(function(artistsUserFollows){
+					$rootScope.artistTotal = artistsUserFollows.length;
+					$rootScope.artists = artistsUserFollows;
+				}).then(function(){
+					// find upcoming shows
+					$rootScope.artists.forEach(function(artist){
+						// have to do this in order to get artist's id from songkick (ew)
+						Songkick.searchByName(artist.name)
+							.then(function(res){
+								var artistData;
+								try {
+									artistData = res.resultsPage.results.artist[0];
+								} catch(e){
+
+								}
+
+								if(artistData){
+									// get all shows for the artist
+									Songkick.artistUpcomingEvents(artistData.id)
+										.then(function(eventSearch){
+											if (eventSearch.resultsPage.totalEntries > 0){
+												var upcomingShows = eventSearch.resultsPage.results.event;
+												// filter out shows not in our location
+												upcomingShows.forEach(function(show){
+
+													if(show.location.city === "San Francisco, CA, US" || show.location.city === "Oakland, CA, US"){
+														$rootScope.showsForUser.push(show);
+														$scope.$apply();
+													}
+												});
+											}
+											
+										});
+								}
+								
+							});
+					});
+				});
+		}
+
 
 		// search artists
 		$scope.search = function(searchTerm){
@@ -60,7 +102,7 @@ app.controller('MainCtrl', [
 			});
 		};
 
-		// follow artist
+		// unfollow artist
 		$scope.unfollowArtist = function(artistId){
 			artists.unfollow(artistId).then(function(){
 				var artistToUnfollow = _.find($rootScope.artists, function(artist, i){
@@ -71,5 +113,6 @@ app.controller('MainCtrl', [
 		};
 
 		$scope.userFollows = artists.userFollows;
+
 		
 	}]);

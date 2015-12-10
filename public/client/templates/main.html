@@ -1,3 +1,29 @@
+<div class='row' ng-if='user'>
+	<div class='col-sm-12'>
+		<h1 class='text-center'>Upcoming shows for artists you follow</h1>
+		<h2 class='text-center text-muted'>SF or Oakland, CA only</h2>
+
+		<div ng-if="showsForUser.length < 1" class='text-center'>
+			<i class="fa fa-spinner fa-6"></i> &nbsp;&nbsp;&nbsp; LOADING...
+		</div>
+
+		<div class='col-md-3 col-sm-6 text-center' ng-repeat='show in showsForUser'>
+			<h3>{{show.displayName}}</h3>
+			<a ng-href='{{show.uri}}'>tickets</a>
+			<p>{{show.start.date}}, {{show.start.time}}</p>
+			<p>{{show.location.city}}</p>
+			<p><b>Venue:</b> {{show.venue.displayName}}</p>
+			<h5 class='text-muted'>Artists:</h5>
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat='a in show.performance'>
+					{{a.artist.displayName}}
+				</li>
+			</li>
+			
+		</div>
+	</div>
+</div>
+
 <div class='row'>
 	<div class='col-sm-12'>
 		<h1 class='text-center'>Artists you follow <p ng-if='user' class="inline text-muted small">({{artistTotal}})</p></h1>
