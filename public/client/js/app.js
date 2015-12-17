@@ -59,6 +59,10 @@ app.config([
 				templateUrl: "client/templates/artist.html",
 				controller: 'ArtistCtrl'
 			})
+			.state('blog', {
+				url: "/blog",
+				templateUrl: "client/templates/blog.html"
+			});
 
 		$urlRouterProvider.otherwise("/");
 	}]);

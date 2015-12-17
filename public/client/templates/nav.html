@@ -7,6 +7,23 @@
          ShowJunkie
       </a>
     </div>
+      <ul class='nav navbar-nav'>
+        <li>
+          <a ui-sref='home'>
+            <i class="fa fa-home fa-3"></i> Home
+          </a>
+        </li>
+        <li>
+          <a ui-sref='blog'>
+            <i class="fa fa-tumblr fa-3"></i> Blog
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/itsshowjunkie' target='_blank'>
+            <i class="fa fa-twitter fa-3"></i> Twitter
+          </a>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-if='user' id='logged-in'>
         	<span ng-bind='user.display_name'></span>
