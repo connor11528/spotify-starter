@@ -7,7 +7,8 @@ var showSchema = new Schema({
 	img_thumb: { type: String, default: 'http://placehold.jp/150x150.png' },
 	datetime: { type: Date, default: Date.now },
 	ticket_link: { type: String },
-	artists: [String] // spotify ids
+	artists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Artist' }]
 });
 
-module.exports = mongoose.model('Show', showSchema);
+// register the model
+mongoose.model('Show', showSchema);

@@ -5,7 +5,9 @@ var artistSchema = new Schema({
 	songkick_id: String,
 	spotify_id: String,
 	imageUrl: String,
-	name: String
+	name: String,
+	shows: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Show' }]
 });
 
-module.exports = mongoose.model('Artist', artistSchema);
+// register the model
+mongoose.model('Artist', artistSchema);

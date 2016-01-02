@@ -42,4 +42,5 @@ userSchema.static('follow', function follow(userId, artistSpotifyId, token, cb) 
 //   return User.findOneAndUpdate({token: token}, {$pull: {follows: {user: id}}}, {new: true}).exec(cb);
 // });
 
-module.exports = mongoose.model('User', userSchema);
+// register the model
+mongoose.model('User', userSchema);
