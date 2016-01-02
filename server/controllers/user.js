@@ -38,7 +38,6 @@ module.exports = {
 
 	},
 	followArtist: function(req, res, next){
-		console.log('in followArtist!');
 
 		var _userId = req.body.userId,
 			_artistId = req.body.artistId,
@@ -46,8 +45,8 @@ module.exports = {
 
 		// static method, takes: userId, artistId, token, cb
 		User.follow(_userId, _artistId, _token, function(err, updatedUser){
-			 if (err) throw err;
-			 console.log('it worked!!');
+			if (err) throw err;
+
 			res.json({
 				success: true,
 				message: 'Followed!',

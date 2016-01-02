@@ -25,13 +25,13 @@ userSchema.pre('save', function(next){
 });
 
 // http://stackoverflow.com/questions/29504278/using-pull-in-mongoose-model
-userSchema.static('follow', function follow(userId, artistId, token, cb) {
+userSchema.static('follow', function follow(userId, artistSpotifyId, token, cb) {
   var User = this;
 
   // make sure token is valid (or do this with route middleware)
   // ...
 
-  return User.findOneAndUpdate({_id: userId }, {$push: {following: artistId}}, {new: true}).exec(cb);
+  return User.findOneAndUpdate({_id: userId }, {$push: {following: artistSpotifyId}}, {new: true}).exec(cb);
 });
 
 // userSchema.static('unfollow', function unfollow(token, id, cb) {
